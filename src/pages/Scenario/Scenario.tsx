@@ -29,6 +29,7 @@ export const SCENARIO = gql`
         questionId
         completed
         remainingTime
+        score
       }
     }
   }
@@ -38,8 +39,6 @@ export const CREATE_PLAYER_SCRIPT = gql`
   mutation createPlayerScript($input: CreatePlayerScriptInput!) {
     createPlayerScript(input: $input) {
       id
-      remainingTime
-      score
     }
   }
 `;
@@ -111,7 +110,6 @@ const ScenarioPage = () => {
         // ! Redirection
         const idPlayerScript = response.data.createPlayerScript.id
         setLocalScenario(idPlayerScript, currentPlayer!.id, sceId!, initScenarioData.stepId, initScenarioData.questionId, initScenarioData.remainingTime, initScenarioData.score)
-        console.log("test2", response.data)
         createChrono(response.data.createPlayerScript.remainingTime)
         redirect(initScenarioData.stepId, initScenarioData.questionId)
       })
@@ -123,8 +121,6 @@ const ScenarioPage = () => {
       const { id, stepId, questionId, remainingTime, score } = playerScript
 
       // ! Redirection
-
-      console.log("test création redirection",playerScript)
       createChrono(remainingTime)
       setLocalScenario(id, currentPlayer!.id, sceId!, stepId, questionId, remainingTime, score);
       redirect(stepId, questionId);

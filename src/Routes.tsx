@@ -13,6 +13,7 @@ import Leaderboard from '@pages/Leaderboard/Leaderboard'
 import QuestionPage from '@pages/Question/Question'
 import StepPage from '@pages/Step/StepPage'
 import MapPage from '@pages/Map/Map'
+import EndScenarioPage from '@pages/Scenario/EndScenario'
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
         <Route path="/departments/:depId/scenarios/:sceId" element={<ScenarioPage />} />
         <Route path="/departments/:depId/scenarios/:sceId/steps/:stepId" element={<StepPage />} />
         <Route path="/departments/:depId/scenarios/:sceId/steps/:stepId/questions/:queId" element={<QuestionPage />} />
+        <Route path="/departments/:depId/scenarios/:sceId/end" element={<EndScenarioPage />} />
         <Route path="/profile" element={<ProfilPage />} />
         <Route path="/profile/informations" element={<ProfilCheckPage />} />
         <Route path="/profile/update" element={<ProfilModifPage />} />

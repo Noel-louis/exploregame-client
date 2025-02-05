@@ -68,11 +68,11 @@ const StepLetter = () => {
             stepId: stepId,
             questionId: currentStep.Step.Questions?.[currentStep.Step.Questions.length - 1]?.id ?? '',
             completed: true,
-            score: 0,
+            score: getScore(),
             remainingTime: getChrono(),
           }
         }
-      }).then(() => navigate(`/departments/${depId}`))
+      }).then(() => navigate(`/departments/${depId}/scenarios/${sceId}/end`))
       return
     }
     updatePlayerScript({

@@ -25,7 +25,6 @@ export function applyPenaltyChrono(penalty: number) {
 
 export function stopChrono() {
     if (intervalId) {
-        console.log("stop chrono");
         clearInterval(intervalId);
         intervalId = null;
     }
@@ -34,7 +33,6 @@ export function stopChrono() {
 export function createChrono(time: number) {
     chrono = time;
     setLocalChrono(chrono);
-    console.log(chrono, time, "première création chrono");
     if (intervalId) {
         clearInterval(intervalId);
     }

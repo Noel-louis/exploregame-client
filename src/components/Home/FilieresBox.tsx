@@ -4,7 +4,6 @@ import { Department } from "@exploregame/types";
 import { gql, useQuery } from "@apollo/client";
 import { color } from 'framer-motion';
 
-
 interface FiliereBoxProps {
 }
 
