@@ -72,7 +72,7 @@ const StepLetter = () => {
             remainingTime: getChrono(),
           }
         }
-      }).then(() => navigate(`/departments/${depId}`))
+      }).then(() => navigate(`/departments/${depId}/scenarios/${sceId}/end`))
       return
     }
     updatePlayerScript({
