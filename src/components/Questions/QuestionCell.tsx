@@ -174,8 +174,10 @@ const QuestionCell = ({
 
   const nextQuestion = questions[questions.indexOf(question!) + 1]
 
-  const scriptStep: ScriptStep = steps.find((s: Step) => s.id === stepId)
+  const scriptStep: ScriptStep = steps.find((s: ScriptStep) => s.Step.id === stepId)
   const nextScriptStep: ScriptStep = steps[steps.indexOf(scriptStep) + 1]
+
+  console.log(scriptStep, nextScriptStep)
 
   function checkAnswer(userAnswers: string[]) {
     try {

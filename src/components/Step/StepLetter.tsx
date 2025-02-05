@@ -162,7 +162,7 @@ const StepLetter = () => {
         transition={{ duration: 0.6 }}
         className="text-[#000] text-3xl"
       >
-        La lettre secrete est
+        La lettre secrète est
       </motion.p>
       <div className="relative">
         <motion.div 
