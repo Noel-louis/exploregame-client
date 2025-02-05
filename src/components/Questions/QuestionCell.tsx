@@ -171,8 +171,10 @@ const QuestionCell = ({
 
   const nextQuestion = questions[questions.indexOf(question!) + 1]
 
-  const scriptStep: ScriptStep = steps.find((s: Step) => s.id === stepId)
+  const scriptStep: ScriptStep = steps.find((s: ScriptStep) => s.Step.id === stepId)
   const nextScriptStep: ScriptStep = steps[steps.indexOf(scriptStep) + 1]
+
+  console.log(scriptStep, nextScriptStep)
 
   function checkAnswer(userAnswers: string[]) {
     try {
@@ -188,7 +190,7 @@ const QuestionCell = ({
         const answers = response.data.checkAnswer.correctAnswers
         if (correct) {
           applyScore(100)
-        } // TODO : réponse partiellement correcte ( choix multiple score + 50 ?)
+        } // TODO : réponse partiellement correct ( choix multiple score + 50 ?)
         setQuestionState({
           userAnswers,
           answered: true,
