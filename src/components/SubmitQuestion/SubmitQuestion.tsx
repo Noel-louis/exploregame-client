@@ -1,6 +1,10 @@
 import { useColorsDepartments } from "@/context/ColorsDepartmentContext"
 import { useCurrentQuestionState } from "@/context/CurrentQuestionStateContext"
+import { Flag } from "lucide-react"
 import { useState, useEffect } from "react"
+import { Button } from "../ui/button"
+import { cpSync } from "fs"
+import toast from "react-hot-toast"
 
 const SubmitQuestion = () => {
   const { questionState } = useCurrentQuestionState()
@@ -15,6 +19,10 @@ const SubmitQuestion = () => {
     }, 500)
     return () => clearTimeout(timer)
   }, [])
+
+  const report = () => {
+    toast.success('Le signalement a bien été pris en compte')
+  }
 
   return (
     <section 
@@ -34,13 +42,16 @@ const SubmitQuestion = () => {
                     <img src={questionState.correct ? '/icon-valid.svg' : '/icon-false.svg'} alt="checked" className="w-8 h-8" />
                     <p className={questionState.correct ? 'font-bold text-[#46E54E]' : 'font-bold text-[#C53030]'}>{questionState.correct ? 'Correct !' : 'Incorrect'}</p>
                   </section>
-                  {questionState.correct ? <img src="/green-flag.svg" alt="green-flag" className="w-12 h-12" /> : <img src="/red-flag.svg" alt="red-flag" className="w-12 h-12" />}
+                  {questionState.correct 
+                    ? <Flag onClick={() => report()} size={36} style={{ color: '#46E54E' }} />
+                    : <Flag onClick={() => report()} size={36} style={{ color: '#C53030' }} />
+                  }
                 </div>
               </div>
               <div className="flex justify-start items-center text-xl">
               <p className={questionState.correct ? 'text-[#46E54E] font-bold' : 'text-[#C53030] font-bold'}>
-                {questionState.correct ? '' : 'Bonne réponse :'} 
-                <span className={questionState.correct ? 'font-thin' : 'font-thin'}>
+                {questionState.correct ? '' : 'Bonne(s) réponse(s) : '} 
+                <span className='font-thin underline'>
                   {questionState.correct ? '' : questionState.answers.join(' , ')}
                 </span>
               </p>

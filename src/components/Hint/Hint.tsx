@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "../ui/button"
-import { Lightbulb, CircleHelp, X } from "lucide-react"
+import { Lightbulb, CircleHelp, X, LucideMessageCircleWarning } from "lucide-react"
 import { Hint as HintType, Question } from "@exploregame/types"
 import { gql, useQuery } from "@apollo/client"
 import { useHints } from "@/context/HintContext"
@@ -44,7 +44,7 @@ const Hint = (
   penalty: (importance: string) => void; 
   question: Question
 }) => {
-  const { questionState, setQuestionState } = useCurrentQuestionState()
+  const { questionState } = useCurrentQuestionState()
   const { getColors } = useColorsDepartments()
   const { primary } = getColors()
   const { hintsOpened, setHintsOpened } = useHints()
@@ -113,7 +113,12 @@ const Hint = (
                   style={{ color: primary }}
                   key={hint.id}
                 >
-                  {hint.hintLevelId === '1' ? "Petit" : hint.hintLevelId === '2' ? "Moyen" : "Grand"}
+                  {hint.hintLevelId === '1' 
+                    ? <div className="flex items-center gap-x-4"><p>Petit</p><p className="text-white text-sm">-1min</p></div>
+                    : hint.hintLevelId === '2' 
+                      ? <div className="flex items-center gap-x-4"><p>Moyen</p><p className="text-white text-sm">-2min</p></div> 
+                      : <div className="flex items-center gap-x-4"><p>Grand</p><p className="text-white text-sm">-3min</p></div>
+                  }
                 </Button>
               )
             })}
