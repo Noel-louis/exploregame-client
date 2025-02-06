@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Department } from "@exploregame/types";
 import { gql, useQuery } from "@apollo/client";
-import { color } from 'framer-motion';
 
 interface FiliereBoxProps {
 }
@@ -28,13 +27,16 @@ const DEPARTMENTS = gql`
 const FilieresBox = ({ }: FiliereBoxProps) => {
   
 
-   const { 
-      data,
-      loading: departmentsLoading,
-      error: departmentsError,
-    } = useQuery(DEPARTMENTS)
+  const { 
+    data,
+    loading,
+    error,
+  } = useQuery(DEPARTMENTS)
 
-    const departments = data.departments
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
+
+  const departments = data.departments
 
   const navigate = useNavigate();
 
