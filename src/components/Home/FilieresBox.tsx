@@ -3,9 +3,6 @@ import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/c
 import { Department } from "@exploregame/types";
 import { gql, useQuery } from "@apollo/client";
 
-interface FiliereBoxProps {
-}
-
 const DEPARTMENTS = gql`
     query FindDepartments {
       departments {
@@ -24,21 +21,20 @@ const DEPARTMENTS = gql`
     }
   `
 
-const FilieresBox = ({ }: FiliereBoxProps) => {
-  
-
+const FilieresBox = () => {
   const { 
     data,
     loading,
     error,
   } = useQuery(DEPARTMENTS)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error</p>
 
-  const departments = data.departments
+  const departments = data?.departments
 
   const navigate = useNavigate();
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
 
   const handleCardClick = (id: string) => {
     navigate(`/departments/${id}`);
