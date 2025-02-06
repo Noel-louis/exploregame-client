@@ -25,4 +25,5 @@ api/db/migrations/*
 !.yarn/versions
 .vscode/
 
+package-lock.json
 yarn.lock
