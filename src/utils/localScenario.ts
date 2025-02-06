@@ -12,7 +12,7 @@ export function setLocalScenario(
   score: number,
 ) {
   localStorage.setItem('scenario', JSON.stringify({ id, playerId, scriptId, stepId, questionId, chrono, score }))
-  console.log(score, "score dans setLocalScenar")
+  // console.log(score, "score dans setLocalScenar")
 }
 
 export function updateLocalScenarioChrono(chrono: number) {
@@ -21,7 +21,7 @@ export function updateLocalScenarioChrono(chrono: number) {
     scenario.chrono = chrono
     localStorage.setItem('scenario', JSON.stringify(scenario))
   }
-  console.log(scenario,"testtt2")
+  // console.log(scenario,"testtt2")
 }
 
 export function updateLocalScenarioScore(score: number) {

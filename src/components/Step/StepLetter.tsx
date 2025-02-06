@@ -79,7 +79,7 @@ const StepLetter = () => {
       variables: {
         id: playerScriptId,
         input: {
-          stepId: nextStep.id,
+          stepId: nextStep.Step.id,
           questionId: nextStep?.Step?.Questions?.[0]?.id ?? '',
           score: getScore(),
           remainingTime: getChrono()
