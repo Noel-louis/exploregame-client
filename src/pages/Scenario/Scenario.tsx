@@ -1,12 +1,13 @@
 import { useEffect } from "react"
 import getCurrentPlayer from "@/utils/currentPlayer"
-import { setLocalScenario } from "@/utils/localScenario"
+import { getLocalScenario, setLocalScenario } from "@/utils/localScenario"
 import { createChrono } from "@/utils/chrono"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { PlayerScript, ScriptStep } from "@exploregame/types"
 import toast from "react-hot-toast"
 import { useNavigate, useParams } from "react-router-dom"
 import { useScriptProgress } from "@/context/ScriptProgressContext"
+import { get } from "http"
 
 export const SCENARIO = gql`
   query FindScenarioById($id: String!) {
@@ -110,7 +111,7 @@ const ScenarioPage = () => {
         // ! Redirection
         const idPlayerScript = response.data.createPlayerScript.id
         setLocalScenario(idPlayerScript, currentPlayer!.id, sceId!, initScenarioData.stepId, initScenarioData.questionId, initScenarioData.remainingTime, initScenarioData.score)
-        createChrono(response.data.createPlayerScript.remainingTime)
+        createChrono(initScenarioData.remainingTime)
         redirect(initScenarioData.stepId, initScenarioData.questionId)
       })
     }
