@@ -5,7 +5,7 @@ interface EvolutionBoxProps {
     urlRedirection: string;
 }
 
-const handleRedirection = (urlRedirection: string) => (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+const handleRedirection = (urlRedirection: string) => () => {
     console.log(urlRedirection);
     window.location.href = urlRedirection;
 }

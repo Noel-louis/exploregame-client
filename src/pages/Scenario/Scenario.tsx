@@ -1,13 +1,12 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import getCurrentPlayer from "@/utils/currentPlayer"
-import { getLocalScenario, setLocalScenario } from "@/utils/localScenario"
+import { setLocalScenario } from "@/utils/localScenario"
 import { createChrono } from "@/utils/chrono"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { PlayerScript, ScriptStep } from "@exploregame/types"
 import toast from "react-hot-toast"
 import { useNavigate, useParams } from "react-router-dom"
 import { useScriptProgress } from "@/context/ScriptProgressContext"
-import { get } from "http"
 
 export const SCENARIO = gql`
   query FindScenarioById($id: String!) {
@@ -53,6 +52,21 @@ const ScenarioPage = () => {
   const { data, loading, error, refetch } = useQuery(SCENARIO, {
     variables: { id: sceId },
   })
+  const [loadingTooLong, setLoadingTooLong] = useState(false)
+
+  useEffect(() => {
+    let loadingTimer: number | null = null;
+    
+    if (loading) {
+      loadingTimer = window.setTimeout(() => {
+        setLoadingTooLong(true)
+      }, 10000) // 10 seconds
+    }
+    
+    return () => {
+      if (loadingTimer) clearTimeout(loadingTimer)
+    }
+  }, [loading])
 
   useEffect(() => {
     if (!currentPlayer) {
@@ -145,8 +159,54 @@ const ScenarioPage = () => {
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
+  if (loading && !loadingTooLong) {
+    return (
+      <section className="flex flex-col items-center justify-center p-8 gap-4 h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+        <p className="text-lg">Chargement du scénario...</p>
+        <button
+          className="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+          onClick={() => navigate(`/departments/${depId}`)}
+        >
+          Retour en arrière
+        </button>
+      </section>
+    )
+  }
+  
+  if (error || loadingTooLong) {
+    return (
+      <section className="flex flex-col items-center justify-center p-8 gap-4 h-screen">
+        <h2 className="text-xl font-semibold text-red-600">Une erreur est survenue</h2>
+        <p className="text-center">
+          {loadingTooLong 
+            ? "Le chargement du scénario prend trop de temps. Veuillez vérifier votre connexion internet et réessayer."
+            : "Nous n'avons pas pu charger votre scénario. Veuillez réessayer ultérieurement."}
+        </p>
+        {error && <p className="text-sm text-gray-500">{error}</p>}
+        <button
+          className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          onClick={() => navigate(`/departments/${depId}`)}
+        >
+          Retour en arrière
+        </button>
+      </section>
+    )
+  }
 
-  return <p>Redirection en cours...</p>
+  // Default UI (if neither loading nor error)
+  return (
+    <section className="flex flex-col items-center justify-center p-8 gap-4 h-screen">
+      <h2 className="text-xl font-semibold text-red-600">Une erreur est survenue</h2>
+      <p className="text-center">Nous n'avons pas pu charger votre scénario. Veuillez réessayer ultérieurement.</p>
+      <button
+        className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        onClick={() => navigate(`/departments/${depId}`)}
+      >
+        Retour en arrière
+      </button>
+    </section>
+  )
 }
 
 export default ScenarioPage;

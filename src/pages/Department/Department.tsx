@@ -7,9 +7,6 @@ import BoutonExplorer from "@/components/Home/BoutonExplorer"
 import { useColorsDepartments } from "@/context/ColorsDepartmentContext"
 import CarteBox from "@/components/Home/CarteBox";
 import ActualiteBox from "@/components/Home/ActualiteBox";
-import { color } from "framer-motion"
-
-
 
 const DEPARTMENTS = gql`
   query FindDepartments {

@@ -2,8 +2,6 @@ import { useColorsDepartments } from "@/context/ColorsDepartmentContext"
 import { useCurrentQuestionState } from "@/context/CurrentQuestionStateContext"
 import { Flag } from "lucide-react"
 import { useState, useEffect } from "react"
-import { Button } from "../ui/button"
-import { cpSync } from "fs"
 import toast from "react-hot-toast"
 
 const SubmitQuestion = () => {

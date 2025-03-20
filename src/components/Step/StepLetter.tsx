@@ -60,6 +60,7 @@ const StepLetter = () => {
   const { playerScriptId, currentStep, nextStep } = stepProps
   
   const handleNext = () => {
+    console.log(nextStep?.Step?.Questions?.[0]?.id)
     if (nextStep === undefined) {
       updatePlayerScript({
         variables: {

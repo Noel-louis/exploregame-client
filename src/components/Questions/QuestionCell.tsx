@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import getCurrentPlayer from "@/utils/currentPlayer"
-import { PlayerScript, Question, ScriptStep, Step } from "@exploregame/types"
+import { PlayerScript, Question, ScriptStep } from "@exploregame/types"
 import { getLocalScenario, setLocalScenario } from "@/utils/localScenario"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { lazy, useEffect, useState, Suspense, LazyExoticComponent, ComponentType } from "react"
