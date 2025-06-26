@@ -26,4 +26,3 @@ api/db/migrations/*
 .vscode/
 
 package-lock.json
-yarn.lock
