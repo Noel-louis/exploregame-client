@@ -17,7 +17,7 @@ git clone https://github.com/jordanlavenant/exploregame-client.git
 Pour installer les dépendances, effectuez la commande à la racine du projet
 
 ```bash
-npm install
+yarn install
 ```
 
 # Configuration
@@ -43,7 +43,7 @@ VITE_MAPTILER_KEY = <maptiler token>
 Pour lancer le projet en mode développement, effectuez la commande
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 # Production
