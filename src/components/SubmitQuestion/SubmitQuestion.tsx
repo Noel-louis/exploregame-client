@@ -28,10 +28,10 @@ const SubmitQuestion = () => {
       ? questionState.correct 
         ? 'bg-[#B6FABA] fixed bottom-0 w-full p-2 space-y-2' 
         : 'bg-[#FAB6B6] fixed bottom-0 w-full p-2 space-y-2' 
-      : 'bg-transparent fixed bottom-8 h-44 w-full p-2 space-y-2'}`
+      : 'bg-transparent fixed bottom-0 w-full p-2 space-y-2'}`
     }
     >
-        <div className="grid grid-rows-2 min-h-24 px-8">
+        {/* <div className="grid grid-rows-2 min-h-24 px-8"> */}
           {questionState.answered && (
             <>
               <div className='flex flex-wrap justify-start items-center'>
@@ -56,7 +56,7 @@ const SubmitQuestion = () => {
               </div>
             </>
           )}
-        </div>
+        {/* </div> */}
       <div className="flex flex-wrap justify-center items-center gap-4 py-2 w-full">
         <button
           className={`${questionState.answered 

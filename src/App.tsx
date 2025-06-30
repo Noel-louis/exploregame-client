@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { NextStepProvider } from '@context/NextStepContext'
 import { ColorsDepartmentProvider } from '@context/ColorsDepartmentContext'
 import { CurrentQuestionStateProvider } from '@context/CurrentQuestionStateContext';
-import { HintProvider } from '@context/HintContext'
+// import { HintProvider } from '@context/HintContext'
 import { ScriptProgressProvider } from './context/ScriptProgressContext'
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <>
       <Toaster />
       <ScriptProgressProvider>
-        <HintProvider>
+        {/* <HintProvider> */}
           <DepartmentProvider>
             <CurrentDepartmentProvider>
               <NextStepProvider>
@@ -25,7 +25,7 @@ function App() {
               </NextStepProvider>
             </CurrentDepartmentProvider>
           </DepartmentProvider>
-        </HintProvider>
+        {/* </HintProvider> */}
       </ScriptProgressProvider>
     </>
   )

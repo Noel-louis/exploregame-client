@@ -6,11 +6,11 @@ import { gql, useMutation, useQuery } from "@apollo/client"
 import { lazy, useEffect, useState, Suspense, LazyExoticComponent, ComponentType } from "react"
 import { useCurrentQuestionState } from "@/context/CurrentQuestionStateContext"
 import { useNextStep } from "@/context/NextStepContext"
-import Hint from "@/components/Hint/Hint"
-import { useHints } from "@/context/HintContext"
+// import Hint from "@/components/Hint/Hint"
+// import { useHints } from "@/context/HintContext"
 import { useScriptProgress } from "@/context/ScriptProgressContext"
 import { applyScore } from "@/utils/score"
-import { applyPenaltyChrono, getChrono } from "@/utils/chrono"
+import {  getChrono } from "@/utils/chrono"
 import { getScore } from "@/utils/score"
 
 export const PLAYER_SCRIPTS = gql`
@@ -79,7 +79,7 @@ const QuestionCell = ({
   const { setStepProps } = useNextStep()
   const currentPlayer = getCurrentPlayer()
   const localScenario = getLocalScenario()
-  const { setHintsOpened } = useHints()
+  // const { setHintsOpened } = useHints()
   const [QuestionModule, setQuestionModule] = useState<LazyExoticComponent<ComponentType<{
     question: Question
     checkAnswer: (answers: string[]) => void
@@ -212,7 +212,7 @@ const QuestionCell = ({
         correct: false,
         answers: []
       })
-      setHintsOpened([false, false, false])
+      // setHintsOpened([false, false, false])
       console.log("QuestionCell setLocalScenario")
       setLocalScenario(playerScript.id, currentPlayer!.id, sceId!, stepId!, nextQuestion.id, getChrono(), getScore())
       navigate(`/departments/${depId}/scenarios/${sceId}/steps/${stepId}/questions/${nextQuestion.id}`)
@@ -222,37 +222,37 @@ const QuestionCell = ({
         nextStep: nextScriptStep,
         playerScriptId: playerScript.id
       })
-      setHintsOpened([false, false, false])
+      // setHintsOpened([false, false, false])
       navigate(`/departments/${depId}/scenarios/${sceId}/steps/${stepId}`)
     }
   }
 
-  const applyPenalty = (importance: string) => {
-    let penalty = 0
-    switch (importance) {
-      case "1":
-        penalty = 60
-        break
-      case "2":
-        penalty = 120
-        break
-      case "3":
-        penalty = 180
-        break
-      default:
-        break
-    }
-    applyPenaltyChrono(penalty)
-  }
+  // const applyPenalty = (importance: string) => {
+  //   let penalty = 0
+  //   switch (importance) {
+  //     case "1":
+  //       penalty = 60
+  //       break
+  //     case "2":
+  //       penalty = 120
+  //       break
+  //     case "3":
+  //       penalty = 180
+  //       break
+  //     default:
+  //       break
+  //   }
+  //   applyPenaltyChrono(penalty)
+  // }
   
   return (
     <div>
       {QuestionModule && question && (
         <Suspense fallback={<div>Loading...</div>}>
-          <Hint 
+          {/* <Hint 
             question={question}
             penalty={applyPenalty}
-          />
+          /> */}
           <section className="pt-8">
             <QuestionModule 
               question={question}

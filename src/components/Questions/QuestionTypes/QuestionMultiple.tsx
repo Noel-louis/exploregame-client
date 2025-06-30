@@ -53,10 +53,12 @@ const QuestionMultiple = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(submit)}>
-        <div className="flex flex-col">
-          <div className="flex justify-center items-center h-96">
-            <section className="grid grid-row gap-y-2 mx-8 w-full">
-              <label className="text-2xl font-bold text-gray-500 w-full text-center my-4">{question.question}</label>
+        <div className="flex flex-col h-[80vh]"> {/* Hauteur totale de la zone question+réponses+footer */}
+          <div className="flex-1 overflow-auto px-4 pb-24"> {/* pb-24 = padding bas pour le bouton */}
+            <section className="grid gap-y-2">
+              <label className="break-words whitespace-pre-line text-2xl font-bold text-gray-500 w-full text-center my-4">
+                {question.question}
+              </label>
               <div className="flex items-center gap-x-1 text-muted-foreground">
                 <Info />
                 <p>Réponses multiples</p>
@@ -80,7 +82,7 @@ const QuestionMultiple = ({
                     key={index}
                     disabled={questionState.answered}
                     type="button"
-                    className='bg-gray-100 text-gray-400 border-gray-200 p-4 border-4 rounded-3xl font-bold text-2xl flex justify-center items-center'
+                    className='w-full bg-gray-100 text-gray-400 border-gray-200 p-4 border-4 rounded-3xl font-bold text-2xl flex justify-center items-center'
                     style={buttonStyle}
                     onClick={() => {
                       const currentAnswers = form.watch("answers")
@@ -100,7 +102,9 @@ const QuestionMultiple = ({
               })}
             </section>
           </div>
-          <SubmitQuestion />
+          <div className="fixed bottom-0 left-0 right-0 bg-white z-10 py-4 shadow">
+            <SubmitQuestion />
+          </div>
         </div>
       </form>
     </Form>
