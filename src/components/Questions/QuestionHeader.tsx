@@ -16,8 +16,11 @@ export const UPDATE_PLAYER_SCRIPT = gql`
     }
   }
 `
+interface QuestionHeaderProps {
+  locationName: string;
+}
 
-const QuestionHeader = () => {
+const QuestionHeader: React.FC<QuestionHeaderProps> = ({ locationName }) => {
   const navigate = useNavigate()
   const { depId } = useParams() 
   const { getColors } = useColorsDepartments()
@@ -76,7 +79,7 @@ const QuestionHeader = () => {
         <button onClick={exit} className="z-10">
           <img src="/exit.svg" alt="timer" className="w-6" />
         </button>
-        <h3 className="text-black text-xl font-bold text-center w-full">BÂTIMENT ADMINISTRATIF</h3>
+        <h3 className="text-black text-xl font-bold text-center w-full">{locationName}</h3>
       </section>
       <section className="flex justify-center items-center gap-2 px-6 py-2">
         <Progress 

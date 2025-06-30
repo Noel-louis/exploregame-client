@@ -6,30 +6,34 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 export const QUESTIONS_RELATED = gql`
 query FindStepById($id: String!) {
-    step(id: $id) {
+  step(id: $id) {
+    id
+    Location {
       id
-    	CharacterStep{
+      name
+    }
+    CharacterStep {
+      id
+      text
+      Character {
         id
-        text
-        Character{
-          id
-          image
-          nomPerso
-        }
+        image
+        nomPerso
       }
-      Questions {
+    }
+    Questions {
+      id
+      question
+      Answer {
         id
-        question
-        Answer {
-          id
-          answer
-        }
-        QuestionType {
-          id
-        }
+        answer
+      }
+      QuestionType {
+        id
       }
     }
   }
+}
 `
 
 const QuestionPage = () => {
@@ -61,10 +65,11 @@ const QuestionPage = () => {
 
   const questions = data.step.Questions
   const discussion = data.step.CharacterStep
+  const locationName = data.step.Location?.name
 
   return (
     <main className="flex-1 flex flex-col h-full">
-      <QuestionHeader />
+      <QuestionHeader locationName={locationName || "lieu inconnu"} />
       {!showQuestions ? (
         <Discussion characterSteps={discussion} onFinish={handleFinishDiscussion}/>
       ) : (
