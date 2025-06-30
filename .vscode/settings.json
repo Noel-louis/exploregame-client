@@ -18,5 +18,15 @@
         "titleBar.inactiveBackground": "#42b88399",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#42b883"
+    "peacock.color": "#42b883",
+    "files.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/public": true,
+        "**/package-lock.json": true,
+        "**/yarn.lock": true,
+        "**/.yarn": true,
+        "**/.vscode": true,
+        "**/docs": true,
+    }
 }
