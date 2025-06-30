@@ -24,7 +24,7 @@ const DepartmentCell = ({
         onClick={handleScript}
         variant="default"
       >
-        Explorer
+        Jouer
       </Button>
     </section>
   )
